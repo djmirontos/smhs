@@ -1,4 +1,5 @@
-import { ArrowRight, ImageIcon } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 export default function Hero() {
@@ -14,7 +15,7 @@ export default function Hero() {
           <div className="flex flex-col items-start text-left">
             <span className="eyebrow mb-5">
               <span className="h-px w-6 bg-gold" aria-hidden="true" />
-              St. Michael High School
+              St. Michael&apos;s High School
             </span>
             <h1 className="font-serif text-[2.4rem] font-semibold leading-[1.12] text-ink sm:text-5xl md:text-6xl lg:text-[4rem]">
               Learning. Character. <span className="text-maroon">Faith.</span>
@@ -39,35 +40,15 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="relative mx-auto aspect-[4/3] w-full max-w-md lg:max-w-none">
-            <svg
-              viewBox="0 0 480 360"
-              className="absolute inset-0 h-full w-full"
-              role="img"
-              aria-label="Abstract decorative illustration of school arches with a cross accent"
-            >
-              <rect x="0" y="0" width="480" height="360" rx="28" fill="#FFFFFF" />
-              <rect x="0" y="0" width="480" height="360" rx="28" fill="none" stroke="#7A263A" strokeOpacity="0.08" />
-              <g opacity="0.9">
-                <path d="M60 300 L60 190 Q60 150 100 150 Q140 150 140 190 L140 300 Z" fill="#7A263A" fillOpacity="0.08" />
-                <path d="M170 300 L170 160 Q170 110 220 110 Q270 110 270 160 L270 300 Z" fill="#7A263A" fillOpacity="0.14" />
-                <path d="M300 300 L300 190 Q300 150 340 150 Q380 150 380 190 L380 300 Z" fill="#7A263A" fillOpacity="0.08" />
-              </g>
-              <line x1="40" y1="300" x2="420" y2="300" stroke="#C7A45A" strokeWidth="2" />
-              <g transform="translate(220,60)" stroke="#C7A45A" strokeWidth="3" strokeLinecap="round">
-                <line x1="0" y1="0" x2="0" y2="34" />
-                <line x1="-12" y1="12" x2="12" y2="12" />
-              </g>
-            </svg>
-
-            <div className="absolute inset-4 flex items-center justify-center rounded-[1.5rem] border-2 border-dashed border-maroon/20 bg-white/50">
-              <div className="px-6 text-center">
-                <ImageIcon className="mx-auto mb-2 text-maroon/40" size={28} aria-hidden="true" />
-                <p className="text-xs font-medium text-maroon/50">
-                  Official school photo coming soon
-                </p>
-              </div>
-            </div>
+          <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl shadow-lg lg:max-w-none">
+            <Image
+              src="/images/school-photo.jpg"
+              alt="St. Michael's High School campus"
+              fill
+              priority
+              sizes="(min-width: 1024px) 560px, (min-width: 640px) 448px, 90vw"
+              className="object-cover"
+            />
           </div>
         </Reveal>
       </div>

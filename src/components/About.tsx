@@ -14,7 +14,7 @@ export default function About() {
             </span>
             <h2 className="section-heading">A Place to Learn, Grow, and Belong</h2>
             <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              St. Michael High School is a Catholic educational community in Tangub City,
+              St. Michael&apos;s High School is a Catholic educational community in Tangub City,
               Misamis Occidental, welcoming learners across Kindergarten, Elementary, and High
               School. We are committed to nurturing every student academically, personally, and
               spiritually as they grow toward their fullest potential.

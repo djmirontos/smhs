@@ -20,7 +20,7 @@ export default function Community() {
             </span>
             <h2 className="section-heading">Rooted in Community</h2>
             <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              St. Michael High School exists within a wider community of students, families,
+              St. Michael&apos;s High School exists within a wider community of students, families,
               educators, and neighbors in Tangub City. Together, this community supports every
               learner&apos;s journey — in the classroom and beyond it.
             </p>

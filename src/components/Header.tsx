@@ -60,9 +60,9 @@ export default function Header() {
           className="flex items-center gap-2.5 rounded-md sm:gap-3"
           onClick={() => setOpen(false)}
         >
-          <Logo size={40} />
+          <Logo className="h-12 w-12 sm:h-14 sm:w-14" />
           <span className="font-serif text-sm font-semibold leading-tight text-maroon-dark sm:text-base">
-            St. Michael
+            St. Michael&apos;s
             <br className="hidden sm:block" /> High School
           </span>
         </a>

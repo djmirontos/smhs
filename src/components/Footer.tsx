@@ -25,9 +25,9 @@ export default function Footer() {
       >
         <div>
           <div className="flex items-center gap-3">
-            <Logo size={40} />
+            <Logo className="h-10 w-10" />
             <span className="font-serif text-base font-semibold leading-tight">
-              St. Michael
+              St. Michael&apos;s
               <br /> High School
             </span>
           </div>
@@ -78,7 +78,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; 2026 St. Michael High School. All rights reserved.</p>
+          <p>&copy; 2026 St. Michael&apos;s High School. All rights reserved.</p>
           <p>Unofficial concept site — not yet authorized by the school administration.</p>
         </div>
       </div>

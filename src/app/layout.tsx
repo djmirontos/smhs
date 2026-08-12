@@ -20,19 +20,19 @@ const inter = Inter({
 // official domain once one is confirmed, then Open Graph/canonical URLs
 // will resolve to absolute paths automatically.
 export const metadata: Metadata = {
-  title: "St. Michael High School | Tangub City, Misamis Occidental",
+  title: "St. Michael's High School | Tangub City, Misamis Occidental",
   description:
-    "St. Michael High School in Tangub City, Misamis Occidental — a Catholic educational community serving Kindergarten, Elementary, and High School learners.",
+    "St. Michael's High School in Tangub City, Misamis Occidental — a Catholic educational community serving Kindergarten, Elementary, and High School learners.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "St. Michael High School | Tangub City, Misamis Occidental",
+    title: "St. Michael's High School | Tangub City, Misamis Occidental",
     description:
       "A Catholic educational community serving Kindergarten, Elementary, and High School learners in Tangub City, Misamis Occidental, Philippines.",
     type: "website",
     locale: "en_PH",
-    siteName: "St. Michael High School",
+    siteName: "St. Michael's High School",
   },
   robots: {
     index: true,
