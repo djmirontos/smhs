@@ -22,7 +22,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "St. Michael's High School | Tangub City, Misamis Occidental",
   description:
-    "St. Michael's High School in Tangub City, Misamis Occidental — a Catholic educational community serving Kindergarten, Elementary, and High School learners.",
+    "St. Michael's High School — 3 3rd South Street, Tangub City, Northern Mindanao. A Catholic educational community serving Kindergarten, Elementary, and High School learners.",
   alternates: {
     canonical: "/",
   },

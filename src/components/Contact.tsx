@@ -5,7 +5,14 @@ const items = [
   {
     icon: MapPin,
     label: "Address",
-    value: "Tangub City, Misamis Occidental, Philippines",
+    value: (
+      <>
+        St. Michael&apos;s High School
+        <br />3 3rd South Street
+        <br />Tangub City, Northern Mindanao
+        <br />Philippines
+      </>
+    ),
   },
   {
     icon: Phone,
@@ -59,13 +66,16 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="flex aspect-video w-full items-center justify-center rounded-2xl border-2 border-dashed border-maroon/20 bg-white lg:aspect-auto lg:h-full">
-              <div className="px-6 text-center">
-                <MapPin className="mx-auto mb-2 text-maroon/40" size={28} aria-hidden="true" />
-                <p className="text-sm font-medium text-maroon/50">
-                  Map will be added once the official location is confirmed
-                </p>
-              </div>
+            <div className="overflow-hidden rounded-2xl shadow-md">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d500!2d123.748116!3d8.062435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2sph!4v1"
+                className="h-[250px] w-full lg:h-[350px]"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="St. Michael's High School location map"
+              />
             </div>
           </Reveal>
         </div>
