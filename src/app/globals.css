@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-maroon: #7a263a;
+  --color-maroon-dark: #5a1b2a;
+  --color-maroon-light: #a94b5e;
+  --color-cream: #faf7f3;
+  --color-soft-gray: #f5f5f4;
+  --color-ink: #292526;
+  --color-muted: #6b6465;
+  --color-gold: #c7a45a;
+
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
+html {
+  scroll-padding-top: 5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-maroon);
+  color: var(--color-cream);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-maroon-dark hover:shadow-md active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border-2 border-maroon/25 bg-transparent px-6 py-3.5 text-sm font-semibold text-maroon-dark transition-all duration-200 hover:-translate-y-0.5 hover:border-maroon hover:bg-maroon/5 active:translate-y-0;
+  }
+  .btn-cta {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-cream px-7 py-3.5 text-sm font-semibold text-maroon-dark shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-md active:translate-y-0;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-maroon sm:text-sm;
+  }
+  .section-heading {
+    @apply font-serif text-[1.9rem] font-semibold leading-[1.15] text-ink sm:text-4xl md:text-[2.75rem];
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-10;
+  }
 }

@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(npm -v)",
-      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)"
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(node qa.mjs)",
+      "Bash(node qa2.mjs)",
+      "Bash(node qa3.mjs)",
+      "Bash(npm run *)",
+      "Bash(node qa4.mjs)"
     ]
   }
 }
