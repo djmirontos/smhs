@@ -29,10 +29,24 @@ export default function Community() {
 
         <Reveal delay={100}>
           <div className="relative mx-auto mt-14 flex max-w-3xl flex-col items-center gap-8 sm:mt-16 sm:flex-row sm:justify-between sm:gap-4">
+            {/* Mobile: vertical line spans the full stack. */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-maroon/0 via-maroon/15 to-maroon/0 sm:left-0 sm:top-8 sm:h-px sm:w-full sm:bg-gradient-to-r"
+              className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-maroon/0 via-maroon/15 to-maroon/0 sm:hidden"
             />
+            {/* Desktop: this wrapper is pinned to the top of the row and is
+                exactly h-16 tall — the same token the icon circle uses — so
+                the line centers itself within it via top-1/2, instead of a
+                hand-typed pixel value that has to be kept in sync separately.
+                It can't drift out of alignment with the icon regardless of
+                the label text below, since that text lives outside this
+                h-16 box entirely. */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 hidden h-16 sm:block"
+            >
+              <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gradient-to-r from-maroon/0 via-maroon/15 to-maroon/0" />
+            </div>
             {nodes.map(({ icon: Icon, label }) => (
               <div key={label} className="relative z-10 flex flex-col items-center gap-3 bg-cream px-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-maroon/10">
