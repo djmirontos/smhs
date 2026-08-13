@@ -9,6 +9,7 @@ const GALLERY_FILENAMES = [
   "gallery-03.jpg",
   "gallery-04.jpg",
   "gallery-05.jpg",
+  "gallery-06.jpg",
 ];
 
 export default function Hero() {

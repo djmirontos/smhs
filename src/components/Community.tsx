@@ -31,7 +31,7 @@ export default function Community() {
           <div className="relative mx-auto mt-14 flex max-w-3xl flex-col items-center gap-8 sm:mt-16 sm:flex-row sm:justify-between sm:gap-4">
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-maroon/0 via-maroon/15 to-maroon/0 sm:left-0 sm:top-1/2 sm:h-px sm:w-full sm:-translate-y-1/2 sm:bg-gradient-to-r"
+              className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-maroon/0 via-maroon/15 to-maroon/0 sm:left-0 sm:top-8 sm:h-px sm:w-full sm:bg-gradient-to-r"
             />
             {nodes.map(({ icon: Icon, label }) => (
               <div key={label} className="relative z-10 flex flex-col items-center gap-3 bg-cream px-4">
