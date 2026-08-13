@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 import Gallery from "./Gallery";
@@ -13,17 +11,7 @@ const GALLERY_FILENAMES = [
   "gallery-05.jpg",
 ];
 
-function getGalleryImages() {
-  return GALLERY_FILENAMES.map((filename) => ({
-    filename,
-    src: `/images/${filename}`,
-    exists: fs.existsSync(path.join(process.cwd(), "public", "images", filename)),
-  }));
-}
-
 export default function Hero() {
-  const galleryImages = getGalleryImages();
-
   return (
     <section id="home" className="relative overflow-hidden bg-cream">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -62,7 +50,7 @@ export default function Hero() {
 
         <Reveal delay={120} className="min-w-0">
           <div className="mx-auto w-full min-w-0 max-w-md lg:max-w-none">
-            <Gallery images={galleryImages} />
+            <Gallery images={GALLERY_FILENAMES} />
           </div>
         </Reveal>
       </div>

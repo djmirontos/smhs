@@ -1,22 +1,13 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 
-export type GalleryImage = {
-  filename: string;
-  src: string;
-  exists: boolean;
-};
-
 type GalleryProps = {
-  images: GalleryImage[];
+  images: string[];
 };
 
-const ANIMATION_DURATION_S = 20;
-
-const SLIDE_CLASSES =
-  "relative aspect-[4/3] h-64 w-auto shrink-0 overflow-hidden rounded-2xl shadow-md lg:h-80";
+const SLIDE_INTERVAL_MS = 3000;
 
 function subscribeReducedMotion(callback: () => void) {
   const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -38,75 +29,114 @@ function altFor(filename: string) {
 }
 
 function Slide({
-  image,
-  hidden,
+  filename,
+  isCurrent,
+  offsetClass,
+  transitionClass,
   priority,
 }: {
-  image: GalleryImage;
-  hidden?: boolean;
-  priority?: boolean;
+  filename: string;
+  isCurrent: boolean;
+  offsetClass: string;
+  transitionClass: string;
+  priority: boolean;
 }) {
-  if (!image.exists) {
-    return (
-      <div className={`${SLIDE_CLASSES} flex items-center justify-center bg-maroon/80`} aria-hidden={hidden}>
-        <p className="px-6 text-center text-sm font-medium tracking-wide text-cream/90">
-          Photo Coming Soon
-        </p>
-      </div>
-    );
-  }
+  const [broken, setBroken] = useState(false);
 
   return (
-    <div className={SLIDE_CLASSES} aria-hidden={hidden}>
-      <Image
-        src={image.src}
-        alt={altFor(image.filename)}
-        fill
-        priority={priority}
-        sizes="(min-width: 1024px) 420px, 300px"
-        className="object-cover"
-      />
+    <div className={`absolute inset-0 ${transitionClass} ${offsetClass}`} aria-hidden={!isCurrent}>
+      {broken ? (
+        <div className="flex h-full w-full items-center justify-center bg-maroon/80">
+          <p className="px-6 text-center text-sm font-medium tracking-wide text-cream/90">
+            Photo Coming Soon
+          </p>
+        </div>
+      ) : (
+        <Image
+          src={`/images/${filename}`}
+          alt={altFor(filename)}
+          fill
+          priority={priority}
+          sizes="(min-width: 1024px) 560px, (min-width: 640px) 448px, 90vw"
+          className="object-cover"
+          onError={() => setBroken(true)}
+        />
+      )}
     </div>
   );
 }
 
 export default function Gallery({ images }: GalleryProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const prefersReducedMotion = useSyncExternalStore(
     subscribeReducedMotion,
     getReducedMotionSnapshot,
     getReducedMotionServerSnapshot
   );
 
-  if (prefersReducedMotion) {
-    return <Slide image={images[0]} priority />;
-  }
+  useEffect(() => {
+    if (paused || images.length <= 1) return;
 
-  const track = [...images, ...images];
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((i) => (i + 1) % images.length);
+    }, SLIDE_INTERVAL_MS);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [paused, images.length]);
+
+  const transitionClass = prefersReducedMotion
+    ? "transition-none"
+    : "transition-transform duration-[400ms] ease-out";
+
+  const pause = () => setPaused(true);
+  const resume = () => setPaused(false);
 
   return (
     <div
-      className="w-full min-w-0 overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onTouchStart={() => setPaused(true)}
-      onTouchEnd={() => setPaused(false)}
-      aria-label="St. Michael's High School photo gallery"
+      className="relative h-64 w-full overflow-hidden rounded-2xl shadow-lg md:h-80 lg:h-96"
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      onTouchStart={pause}
+      onTouchEnd={resume}
+      onTouchCancel={resume}
+      role="group"
+      aria-label="St. Michael's High School photo slideshow"
     >
-      <div
-        className="gallery-track flex w-max gap-4"
-        style={{
-          willChange: "transform",
-          animationDuration: `${ANIMATION_DURATION_S}s`,
-          animationPlayState: paused ? "paused" : "running",
-        }}
-      >
-        {track.map((image, i) => (
+      {images.map((filename, index) => {
+        const offset = (index - currentIndex + images.length) % images.length;
+        const offsetClass =
+          offset === 0
+            ? "translate-x-0"
+            : offset === images.length - 1
+              ? "-translate-x-full"
+              : "translate-x-full";
+
+        return (
           <Slide
-            key={`${image.filename}-${i}`}
-            image={image}
-            hidden={i >= images.length}
-            priority={i === 0}
+            key={filename}
+            filename={filename}
+            isCurrent={index === currentIndex}
+            offsetClass={offsetClass}
+            transitionClass={transitionClass}
+            priority={index === 0}
+          />
+        );
+      })}
+
+      <div
+        className="pointer-events-none absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5"
+        aria-hidden="true"
+      >
+        {images.map((filename, index) => (
+          <span
+            key={filename}
+            className={`h-1.5 w-1.5 rounded-full transition-colors duration-200 ${
+              index === currentIndex ? "bg-white" : "bg-white/40"
+            }`}
           />
         ))}
       </div>
