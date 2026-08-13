@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { Link2, Camera, Play } from "lucide-react";
-import Logo from "./Logo";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -25,7 +25,13 @@ export default function Footer() {
       >
         <div>
           <div className="flex items-center gap-3">
-            <Logo className="h-10 w-10" />
+            <Image
+              src="/images/logo_white.png"
+              alt="St. Michael's High School"
+              width={120}
+              height={120}
+              className="h-20 w-auto"
+            />
             <span className="font-serif text-base font-semibold leading-tight">
               St. Michael&apos;s
               <br /> High School
