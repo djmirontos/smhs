@@ -1,8 +1,29 @@
-import Image from "next/image";
+import fs from "node:fs";
+import path from "node:path";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
+import Gallery from "./Gallery";
+
+const GALLERY_FILENAMES = [
+  "school-photo.jpg",
+  "gallery-01.jpg",
+  "gallery-02.jpg",
+  "gallery-03.jpg",
+  "gallery-04.jpg",
+  "gallery-05.jpg",
+];
+
+function getGalleryImages() {
+  return GALLERY_FILENAMES.map((filename) => ({
+    filename,
+    src: `/images/${filename}`,
+    exists: fs.existsSync(path.join(process.cwd(), "public", "images", filename)),
+  }));
+}
 
 export default function Hero() {
+  const galleryImages = getGalleryImages();
+
   return (
     <section id="home" className="relative overflow-hidden bg-cream">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -39,16 +60,9 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={120}>
-          <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl shadow-lg lg:max-w-none">
-            <Image
-              src="/images/school-photo.jpg"
-              alt="St. Michael's High School campus"
-              fill
-              priority
-              sizes="(min-width: 1024px) 560px, (min-width: 640px) 448px, 90vw"
-              className="object-cover"
-            />
+        <Reveal delay={120} className="min-w-0">
+          <div className="mx-auto w-full min-w-0 max-w-md lg:max-w-none">
+            <Gallery images={galleryImages} />
           </div>
         </Reveal>
       </div>
