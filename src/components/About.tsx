@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 const levels = ["Kindergarten", "Elementary", "High School"];
@@ -39,35 +40,14 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="relative mx-auto aspect-square w-full max-w-md">
-            <svg
-              viewBox="0 0 400 400"
-              className="h-full w-full"
-              role="img"
-              aria-label="Abstract illustration representing school and community"
-            >
-              <circle cx="200" cy="200" r="190" fill="#FAF7F3" />
-              <circle cx="200" cy="200" r="150" fill="none" stroke="#C7A45A" strokeOpacity="0.25" strokeWidth="1.5" />
-              <g fill="#7A263A">
-                <circle cx="200" cy="110" r="10" fillOpacity="0.7" />
-                <circle cx="150" cy="150" r="8" fillOpacity="0.45" />
-                <circle cx="250" cy="150" r="8" fillOpacity="0.45" />
-                <circle cx="120" cy="210" r="7" fillOpacity="0.3" />
-                <circle cx="280" cy="210" r="7" fillOpacity="0.3" />
-              </g>
-              <g stroke="#7A263A" strokeOpacity="0.25" strokeWidth="1.5">
-                <line x1="200" y1="110" x2="150" y2="150" />
-                <line x1="200" y1="110" x2="250" y2="150" />
-                <line x1="150" y1="150" x2="120" y2="210" />
-                <line x1="250" y1="150" x2="280" y2="210" />
-              </g>
-              <path
-                d="M130 300 L130 230 Q130 200 160 200 L240 200 Q270 200 270 230 L270 300 Z"
-                fill="#7A263A"
-                fillOpacity="0.1"
-              />
-              <rect x="130" y="290" width="140" height="14" fill="#7A263A" fillOpacity="0.18" rx="2" />
-            </svg>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/images/learn.jpg"
+              alt="Students at St. Michael's High School"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </Reveal>
       </div>
